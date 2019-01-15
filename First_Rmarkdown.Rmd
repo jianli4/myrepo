@@ -5,8 +5,10 @@ date: "1/14/2019"
 output: github_document
 ---
 
-```{r}
+```{r,echo=TRUE}
 1+1
 
+summary(cars)
+head(cars)
 ```
 
