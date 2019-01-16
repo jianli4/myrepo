@@ -57,3 +57,10 @@ f<- function(x){
 }
 f("a")
 
+
+
+
+###YAML languages 
+###output to github_document for rendering md files instead of Rmd and html files
+
+
