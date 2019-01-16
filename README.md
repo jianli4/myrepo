@@ -1,4 +1,7 @@
 # myrepo
-test repo with studio
-This is a line from RStudio in Downtown Austin
-Line added from GitHub
+This Repo contains the two-day workshop held at Austin, Texas 
+
+Taughy by Jenny and Jim 
+
+The course material maybe found at the RStudio Safari  Tab
+
