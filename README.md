@@ -1,7 +1,4 @@
 # myrepo
-This Repo contains the two-day workshop held at Austin, Texas 
+This Repo contains learning materials from both the RStudio workshop and conference held at Austin, Texas. 
 
-Taughy by Jenny and Jim 
-
-The course material maybe found at the RStudio Safari  Tab
-
+It also includes my self-learning notes along the journey.
