@@ -1,0 +1,34 @@
+---
+title: "Day7 Self Learning"
+author: "Jian Li"
+date: "1/21/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create Video Files
+Before creating video clips, you need to make sure ffmpeg is installed in your computer. The command of brew install ffmpeg in Mac terminal should do the job. Also packge transformr is required
+```{bash eval=FALSE}
+echo "Install ffmpeg from terminal"
+brew install ffmpeg
+```
+
+```{r,echo=TRUE}
+library(gganimate)
+library(ggplot2)
+require(transformr)
+p<- ggplot(airquality,aes(Day,Temp))+geom_line(size=2,colour='steelblue')+transition_states(Month,4,1)+shadow_mark(size=1,colour='grey')
+
+animate(p,renderer=ffmpeg_renderer())
+
+```
+
+
+
+```{r,echo=TRUE}
+library(purrr)
+library(repurrrsive)
+```
