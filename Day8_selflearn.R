@@ -28,10 +28,27 @@ starwars %>% add_count(species)
 ###Besides calculating the count,add_count() will output all of the variables along with n
 
 
-
+###function to handle by-processing in work
+###it's better to move select(-data) ahead of unnest(model)
+map_by<- function(data,by,...){
+  data %>% arrange_(.dots=by) %>% group_by_(.dots=by) %>% nest() %>% mutate(
+    model=map(data,...)) %>% select(-data) %>% unnest(model) %>% as.data.frame(.)
+}
+map_by(mtcars,"cyl",function(x) dim(x)[2])
 
 library(ggplot2)
 library(gganimate)
 
-devtools::install_github("https://github.com/rstudio/gt.git")
+library(devtools)
+remotes::install_github("rstudio/gt")
+library(gt)
 
+example("gt")
+tab_1<- exibble %>% gt(rowname_col="row",groupname_col="group")
+head(exibble)
+
+tab_2<- pizzaplace %>% top_n(100) %>% gt() %>% as_rtf()
+writeLines(tab_2,"~/Desktop/pizzaplace.rtf")
+# write_file(tab_2,"pizzaplace.docx")
+tab_2
+as_rtf(tab_2)
