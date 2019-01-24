@@ -61,7 +61,7 @@ sp500 %>%
   mutate(date=as.character(date)) %>%
   gt() %>%
   tab_header(
-    title = "S&P 500",
+    title = md("*S&P 500*"),
     subtitle = glue::glue('{format(as.Date(start_date),"%B %d, %Y")} to {format(as.Date(end_date),"%B %d, %Y")}')
   ) %>%
   fmt_date(
@@ -76,8 +76,35 @@ sp500 %>%
     columns = vars(volume),
     scale_by = 1 / 1E9,
     pattern = "{x}B"
+  ) %>%
+  cols_merge(col_1=vars(open),
+             col_2=vars(high),
+             pattern="{1}&mdash;{2}"
+             ) %>%
+  cols_label(
+    open="Open to Close",
+    date="Date",
+    low="Low",
+    close="Close",
+    volume="Volume"
+  ) %>% 
+  cols_align(
+    align='center',
+    columns=vars(open)
+  ) %>% 
+  tab_options(
+    table.background.color = NULL,
+    heading.background.color = NULL,
+    table.border.top.width = 0 #remove top border
   )
+  # tab_style(
+  #   style = cells_styles(
+  #     bkgd_color = "lightcyan",
+  #     text_weight = "bold")
+  # ) 
 
+
+cells_styles()
 ###play around with tableby() function
 tableby(arm ~ sex + age, data = mockstudy) %>%
   as.data.frame() %>%
