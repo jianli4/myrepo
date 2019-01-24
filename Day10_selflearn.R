@@ -115,3 +115,10 @@ write2word(tab1,
            include.rownames = FALSE, # passed to print.xtable
            caption.placement = "top" # passed to print.xtable
 ) 
+
+write2pdf(tab1,
+           "test.xtable.pdf", quiet = TRUE,
+           comment = FALSE, # passed to print.xtable to turn off the default message about xtable version
+           include.rownames = FALSE, # passed to print.xtable
+           caption.placement = "top" # passed to print.xtable
+) 
