@@ -93,9 +93,48 @@ sp500 %>%
     columns=vars(open)
   ) %>% 
   tab_options(
-    table.background.color = NULL,
-    heading.background.color = NULL,
-    table.border.top.width = 0 #remove top border
+    # table.background.color = NULL,
+    # heading.background.color = NULL,
+    # table.border.top.width = 0, #remove top border
+
+    table.font.size = px(14),            # Entire table's font size
+    table.background.color = NULL,       # Entire table's background color
+    table.width = px(720),               # Entire table's width
+    table.border.top.style = NULL,    # Top line of table - style
+    table.border.top.width = px(0),      # Top line of table - width
+    table.border.top.color = NULL,   # Top line of table - color
+    heading.background.color = NULL,   # Heading background color
+    heading.title.font.size = px(18),    # Title of heading font size
+    heading.subtitle.font.size = px(14), # Subtitle font size
+    heading.border.bottom.style = "solid",     # Bottom line of heading - style
+    heading.border.bottom.width = px(2),       # Bottom line of heading - width
+    heading.border.bottom.color = "black",    # Bottom line of heading - color
+    column_labels.font.size = px(16),                # Column labels - font size
+    column_labels.font.weight = "normal",            # Column labels - font weight
+    column_labels.background.color = "white",    # Column labels - background color
+    stub_group.background.color = "white",     # Stub group background color
+    stub_group.font.size = px(14),             # Stub group labels - font size
+    stub_group.font.weight = "800",            # Stub group labels - font weight
+    stub_group.border.top.style = "solid",     # Top line of stub group - style
+    stub_group.border.top.width = px(2),       # Top line of stub group - width
+    stub_group.border.top.color = "black",      # Top line of stub group - color
+    stub_group.border.bottom.style = "solid",     # Bottom line of stub group - style
+    stub_group.border.bottom.width = px(2),       # Bottom line of stub group - width
+    stub_group.border.bottom.color = "black",    # Bottom line of stub group - color
+    field.border.top.style = "solid",          # Top line of field - style
+    field.border.top.width = px(2),            # Top line of field - width
+    field.border.top.color = "black",      # Top line of field - color
+    field.border.bottom.style = "solid",       # Bottom line of field - style
+    field.border.bottom.width = px(2),         # Bottom line of field - width
+    field.border.bottom.color = "black",   # Bottom line of field - color
+    row.padding = px(8),                       # Padding of all data rows (stub & field)
+    summary_row.background.color = "black", # -- background color of all summary rows (stub & field)
+    summary_row.padding = px(3),               # padding of all summary rows (stub & field)
+    summary_row.text_transform = "lowercase",  # text transform on all summary row labels
+    footnote.font.size = px(12),               # text size of the footnotes block
+    footnote.padding = px(3),                  # padding of the footnotes block
+    sourcenote.font.size = px(12),             # text size of the source notes block
+    sourcenote.padding = px(3)                 # padding of the source note block
   )
   # tab_style(
   #   style = cells_styles(
