@@ -1,0 +1,109 @@
+---
+title: "Hello R Markdown"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a paragraph in a n R mMarkdown document. 
+
+Below is a code chunk:
+
+```{r}
+fit<- lm(dist ~ speed, data = cars)
+b<- coef(fit)
+plot(cars)
+abline(fit)
+```
+
+The slope of the regression is `r b[2]`.
+
+To mark text as `inline code`, use a pair of backticks, e.g., `code`. To include n literal bacxkticks, use at least n+1 backticks outside, e.g., you can use four backticks to preservie three backtick inside: ````code`````, which is rendered as ```code````.
+
+Hyperlinks are created using the syntax [text](link), e.g., [RStudio](https://www.rstudio.com). The syntax for images is similiar: just add an exclamation mark, e.g., 
+<center>
+![Rmarkdown](C:/Jian/RStudio\\ Conference/myrepo/myrepo/figs/rmarkdown.png).  
+</center>
+
+Footnotes are put inside the square brackets after a caret ^[Here is the first footnote], e.g., Hello Jasmine^[A nice place for chill and relax].
+
+There are multiple ways to insert citations, and we recommend that you use BibTex databases, because they work better wwhen the output format is LaTeX/PDF. Section 2.8 of Xie (2016) has explained the details. The key idea is that when you have a BibTex databse (a plain-text file with the conventional filename extension .bib) that contains entries like:
+
+```{r,eval=FALSE}
+@Manual{R-base,
+  title={R: A Language and Environment for Statistical Computing},
+  author={{PR Core Team}},
+  organization={R Foundation for Statistical Computing},
+  address={Vienna, Austria},
+year={2017},
+url={https:://www.r-project.org/},
+}
+```
+
+Inline equation:
+$H~2~O$  
+
+Display equation:
+<!-- $$ E=MC^2^ $$  -->
+apparently display equation isn't working with current RStudio Version.
+
+#First-level header  
+##Second-level header  
+###Third-level header  
+
+If you do not want a cetain heading to be numbered, you can add{-} or {.unnumbered} after the heading, e.g.,   
+
+# Preface{-}  
+
+Unordered list items start wtih *, -, or +, and you can nest one list within another list by indenting the sub-list, e.g.,
+- one item
+- one item
+- one item
+  -one more item
+  -one more item
+  -one more item
+  
+Ordered list items start wtih numbers (you can also nest lists within lists), e.g.,
+1. the first item
+2. the second item
+3. the third item
+  - one unordered item
+  -one unordered item
+  
+Blockquotes are written after >, e.g.,  
+
+>"I thoroughly disapprove of duels. If a man should challenge me, I would take him kindly and forgivingly by the hand and lead him to a quite place and kill him."
+>
+> --- Mark Twain
+
+
+##Math Expression
+however math expression isn't working well in current RStudio.
+```{r,eval=FALSE}
+$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$
+```
+
+$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$
+
+
+```{r,this is a new chunk,results='hide',fig.height=4}
+#execute code if the date is later than a specified day
+do_it<- Sys.Date() > '2018-02-14'
+```
+```{r,eval=do_it}
+x=rnorm(100)
+```
+
+There are a large number of chunk options in knitr documented at https://yihui.name/knitr/options. we list a subset of them below:
+
+- **eval**: Whether toe evaulate a code chunk.  
+- **echo**: Whether to echo the source code in the output document (someonme may not prefer reading your smart source doe but only results)  
+- **collapse**: When set to 'hide', text output will be hidden; when set to 'aiss', text output is written 'as-is", e.g., you canwrite out raw markdown text ffrom R code (like cat("**Markdown** is cool")). By default, text output will be wrapped in verbatim elements (typtically palin code blocks).  
+- **warning**, **message**, **error**: Whether to show warnings, messages  ,and errors in the output document. Note that if you set error=FALSE, rmakdown::render*() will halt on error in a code chunk, and the error will be dispalyed in the R console, Similarly, when warning=FALSE or message=FALSE, these messages will be shown in the R console.  
+- **include**: Whether to include anything from a code chunk in the output document. When include=FALSE, this whole code chunk is excluded in the output, but note that it will still be evaluated if eval=TRUE. When you are trying to set echo=FALSE, reuslts='hide', warning=FALSE, and message=FALSE, chances are you simply mean a single option include=FALSE instead of suppressing different types of text output individually.  
+- **cache**:Whether to enable chching. If caching is enabled, the same code chunk will not be evaluated the next time the document is compiled (if the code chunk was not modified), which can save you time. However, I want to honestly remind you of the two hard problems in computer science (via Phil Kariton): naming things, and cache invalidation. Cachin can be handy but also tricky sometimes.  
+- **fig.width** and **fig.height**: The graphical device size of R piots in inches. R plots in code chunks are first recorded via a graphical device in knitr. and the written out to files. You can also specify the two options together in a single chunk optins fig.dim, e.g., fig.dim=c(6,4) means fig.width=6 and fig.height=4.
+
+
