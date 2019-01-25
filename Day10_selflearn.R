@@ -122,3 +122,33 @@ write2pdf(tab1,
            include.rownames = FALSE, # passed to print.xtable
            caption.placement = "top" # passed to print.xtable
 ) 
+
+
+
+
+
+###this if for univariate function
+###list of data frames
+rslt9  <- univariate(lew,c("y"),basic=TRUE, 
+                     moments=TRUE, ci=TRUE, quant=TRUE, norm=TRUE, quantlvl=c(.01, 0.05, 0.1, 0.25, 0.75, 0.90, 0.95, 0.99))
+rslt10  <- univariate(lottery,c("y"),basic=TRUE, 
+                      moments=TRUE, ci=TRUE, quant=TRUE, norm=TRUE, quantlvl=c(.01, 0.05, 0.1, 0.25, 0.75, 0.90, 0.95, 0.99))
+
+list_data<- list(lew,lottery,numacc2,numacc3,numacc4)
+map(list_data,univariate,basic=TRUE,
+    moments=TRUE, ci=TRUE, quant=TRUE, norm=TRUE, quantlvl=c(.01, 0.05, 0.1, 0.25, 0.75, 0.90, 0.95, 0.99))
+# invoke_map(list_func,list_data,basic=TRUE, 
+#            moments=TRUE, ci=TRUE, quant=TRUE, norm=TRUE, quantlvl=c(.01, 0.05, 0.1, 0.25, 0.75, 0.90, 0.95, 0.99))
+
+##supply with a tibble and invoke_map() will do the job!
+df <- tibble::tibble(
+  f = c("univariate", "univariate"),
+  params = list(
+    list(lew,"y",basic=TRUE, 
+         moments=TRUE, ci=TRUE, quant=TRUE, norm=TRUE, quantlvl=c(0.05, 0.25, 0.75, 0.99)),
+    list(Iowa_salary_book,c("total_salary_paid"),basic=TRUE, 
+         moments=TRUE, ci=TRUE, quant=TRUE, norm=FALSE, quantlvl=c(.01, 0.05, 0.1, 0.25, 0.75, 0.90, 0.95, 0.99))
+  )
+)
+df
+invoke_map(df$f, df$params)
