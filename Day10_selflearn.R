@@ -152,3 +152,16 @@ df <- tibble::tibble(
 )
 df
 invoke_map(df$f, df$params)
+
+
+
+
+
+# Split into pieces, fit model to each piece, then predict
+by_cyl <- mtcars %>% split(.$cyl)
+mods <- by_cyl %>% map(~ lm(mpg ~ wt, data = .))
+map2(mods, by_cyl, predict)
+#another way using nest()
+###map2() is used because predict function takes two arguments, model and data respectively
+mtcars %>% group_by(cyl) %>% nest() %>% mutate(model=map(data,~lm(mpg ~ wt, data=as.data.frame(.)))) %>% mutate(rslt=map2(model,data,predict)) %>%
+  unnest(rslt) 
