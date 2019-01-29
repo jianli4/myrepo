@@ -1,0 +1,35 @@
+---
+title: "Interactive Documents"
+author: "Jian Li"
+date: "1/28/2019"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Below is a map that shows the location of the Department of Statistics, Iowa State University.
+
+```{r out.width='100%',echo=FALSE}
+library(leaflet)
+leaflet() %>% addTiles() %>% setView(-93.65,42,0285,zoom=17) %>% addPopups(-93.65,42.0285,'Here is the <b>Department of Statistics</b>, ISU')
+
+
+```
+
+A standard R plot can be made interactive by wrapping it in the Shiny 'renderPlot()' function. The 'SelctInput()' function creates the input widget to drive the plot. 
+
+```{r eruptions,echo=FALSE}
+selectInput(
+  'breaks',label='Number of bins:',
+  choices=c(10,20,25,50),selected=20
+)
+renderPlot({
+  par(mar=c(4,4,.1,.5))
+  hist(
+    faithful$eruptions,as.numeric(input$breaks),col=hsv(h=1,s=1,v=1),border='white',xlab='Duration (minutes)', main='')
+})
+```
+
