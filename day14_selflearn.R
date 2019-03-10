@@ -42,6 +42,8 @@ source2("day3_Rcode.R")
 
 
 map_by<- function(data,by,...){
+  require(tidyverse)
+  require(rlang)
   by_a<- paste0(by,collapse = ",")
   by_g<- str_replace(str_replace(by_a,"desc\\(",""),"\\)","")
   text<- paste0("data %>% arrange(",by_a,")"," %>% group_by(",by_g,") %>% nest() %>% mutate(model=map(data,...)) %>% select(-data) %>% unnest(model) %>% as.data.frame()")
