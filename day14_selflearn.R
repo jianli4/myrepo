@@ -48,6 +48,8 @@ map_by<- function(data,by,...){
   expr<- parse_expr(text)
   eval(expr)
 }
+#example calls:
 map_by(iris,by=c("Species","Sepal.Length"),nrow)
 map_by(iris,by=c("Species"),nrow)
 map_by(iris,by=c("Species","desc(Sepal.Length)"),nrow)
+map_by(iris,by="desc(Species)",nrow)
